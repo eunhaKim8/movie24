@@ -1,4 +1,4 @@
-from flask import Flask, requests, jsonify
+from flask import Flask, request, jsonify
 import requests
 
 app = Flask(__name__)
@@ -20,7 +20,10 @@ def get_movies_popular():
   url = f"https://api.themoviedb.org/3/movie/popular?language=ko-KR&api_key={API_KEY}"
   response = requests.get(url)
   if response.status_code == 200:
-    return jsonify(response.json())
+    movie_data = response.json()
+    for movie in movie_data['results']:
+      movie['img_url'] = f"https://image.tmdb.org/t/p/w500{movie['poster_path']}" # 이미지 URL 추가
+    return jsonify(movie_data)
   else:
     return jsonify({"error": response.text}), response.status_code
 

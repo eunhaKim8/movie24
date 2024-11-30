@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import MovieList from "./components/movieList";
+import MovieList from "./components/MovieList/movieList";
 import MovieDetail from "./components/movieDetails";
 
 const App = () => {
@@ -12,9 +12,7 @@ const App = () => {
       <h1>MOVIE24</h1>
       <Routes>
         {/* 메인 페이지 */}
-        <Route path="/" element={<MovieList />} />
-        {/* 상세 페이지 */}
-        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/movies/popular" element={<MovieList />} />
       </Routes>
     </Router>
   );
